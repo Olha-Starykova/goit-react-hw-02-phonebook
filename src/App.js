@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import shortid from 'shortid';
-import FormContacts from './components/contacts/FormContacts';
+import ContactForm from './components/ContactForm/ContactForm';
 
-import TodoList from './components/TodoList/TodoList';
+import ContactList from './components/ContactList/ContactList';
 
-import TodoEditor from './components/TodoEditor/TodoEditor';
+
 
 import Filter from './components/Filter/Filter';
 
@@ -22,20 +22,29 @@ class App extends Component {
   };
 
   addTodo = (name, number) => {
-    const contacts = {
-      id: shortid.generate(),
-      name: name,
-      number: number,
-    }
-  //обновляем состояние от предыдущего добавляем элемент, а стейте арр идет обновление
-    this.setState(prevState => ({
-      contacts: [contacts, ...prevState.contacts],
-    })
-    );
-    // this.setState(({ todos }) => ({
-    //   todos: [todo, ...todos],
-    // }));
+    const existingName = this.state.contacts.map(contact => contact.name).includes(name);
+  
+    if (existingName) {
+      alert(`${name} is already in contacts`);
+    } else {
+      const contacts = {
+        id: shortid.generate(),
+        name: name,
+        number: number,
+      }
+      //обновляем состояние от предыдущего добавляем элемент, а стейте арр идет обновление
+      this.setState(prevState => ({
+        contacts: [...prevState.contacts, contacts],
+      })
+      );
+      // this.setState(({ todos }) => ({
+      //   todos: [todo, ...todos],
+      // }));
+
+     }
   };
+   
+ 
 
 //убираем елемент , чей id совпадает
    deleteTodo = contactId => {
@@ -64,18 +73,17 @@ class App extends Component {
   };
   
     render() {
-      const { contacts, filter } = this.state
+      const { filter } = this.state
       const visibleTodos = this.getVisibleTodos();
       
       return (
-        <>
-         
-          {/* <TodoEditor onSubmit={this.addTodo} /> */}
+        <div>
+         <h1>Phonebook</h1>
+          <ContactForm onSubmit={this.addTodo} />
+          <h2>Contacts</h2>
           <Filter filter={filter} onChange={ this.changeFilter}/>
-          {/* <FormContacts onSubmit={this.formSubmitHandler} /> */}
-        <FormContacts onSubmit={this.addTodo} />
-          <TodoList contacts={visibleTodos} onDeleteTodo={this.deleteTodo} />
-        </>
+          <ContactList contacts={visibleTodos} onDeleteTodo={this.deleteTodo} />
+        </div>
       );
     }
 }

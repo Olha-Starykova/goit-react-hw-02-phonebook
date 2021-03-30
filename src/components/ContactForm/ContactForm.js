@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
   //ставим npm i shortid
-  import shortid from 'shortid';
+import shortid from 'shortid';
+import './ContactForm.css'
+  
 
-class FormContacts extends Component {
+class ContactForm extends Component {
   state = {
-    name: '',
+    name: '', 
     number: ''
   };
 //генерим там лежит уникалый индефикатор
@@ -38,7 +40,7 @@ class FormContacts extends Component {
 
     render() {
       return (
-        <form onSubmit={this.hendelSubmit}>
+        <form className='form' onSubmit={this.hendelSubmit}>
           <label htmlFor={this.nameInputId}>
             Name <input
               type="text"
@@ -56,7 +58,7 @@ class FormContacts extends Component {
               type="tel"
               value={this.state.number}
               name="number"
-             //  pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
+            // pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
               title="Номер телефона должен состоять из 11-12 цифр и может содержать цифры, пробелы, тире, пузатые скобки и может начинаться с +"
               id={this.numberInputId}
               onChange={this.hendelChange}
@@ -65,7 +67,7 @@ class FormContacts extends Component {
           </label>
             
                 
-          <button type='submit'>Add contacts</button>
+          <button className="button" type='submit'>Add contacts</button>
       
         </form>
             
@@ -73,4 +75,6 @@ class FormContacts extends Component {
       );
     }
 }
-export default FormContacts;
+export default ContactForm;
+
+   

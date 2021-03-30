@@ -1,7 +1,7 @@
 import React from 'react';
-import './TodoList.css'
+import './ContactList.css'
 
-const TodoList = (({ contacts, onDeleteTodo }) =>
+const ContactList = (({ contacts, onDeleteTodo }) =>
     <ul className="TodoList">
         {contacts.map(({ id, name, number }) => (
             <li key={id} className="TodoList__item">
@@ -12,4 +12,4 @@ const TodoList = (({ contacts, onDeleteTodo }) =>
     </ul>
 );
 
-export default TodoList;
+export default ContactList;
