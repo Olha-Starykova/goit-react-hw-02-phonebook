@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
   //ставим npm i shortid
 import shortid from 'shortid';
 import './ContactForm.css'
@@ -75,6 +76,10 @@ class ContactForm extends Component {
       );
     }
 }
+
+   ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
+
 export default ContactForm;
 
-   

@@ -37,11 +37,7 @@ class App extends Component {
         contacts: [...prevState.contacts, contacts],
       })
       );
-      // this.setState(({ todos }) => ({
-      //   todos: [todo, ...todos],
-      // }));
-
-     }
+    }
   };
    
  
